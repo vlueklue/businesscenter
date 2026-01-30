@@ -4,7 +4,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Lightbulb, History, Heart, Zap, DollarSign } from "lucide-react";
-import WhatsAppFloat from "./components/shared/WhatsAppFloat";
+import WhatsAppFloat from "../components/shared/WhatsAppFloat";
 
 export default function Layout({ children, currentPageName }) {
     const location = useLocation();
@@ -44,7 +44,7 @@ export default function Layout({ children, currentPageName }) {
                     }
                 `}
             </style>
-            
+
             {/* Header */}
             <header className="brutalist-border bg-white brutalist-shadow mb-8 relative">
                 <div className="container mx-auto px-4 py-6">
@@ -62,18 +62,17 @@ export default function Layout({ children, currentPageName }) {
                                 </p>
                             </div>
                         </div>
-                        
+
                         {/* Desktop Navigation */}
                         <nav className="hidden md:flex gap-2">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.name}
                                     to={item.url}
-                                    className={`px-6 py-3 brutalist-border brutalist-text text-sm transition-all duration-200 transform hover:translate-y-[-2px] ${
-                                        location.pathname === item.url
+                                    className={`px-6 py-3 brutalist-border brutalist-text text-sm transition-all duration-200 transform hover:translate-y-[-2px] ${location.pathname === item.url
                                             ? 'bg-blue-600 text-white brutalist-shadow'
                                             : 'bg-white text-black hover:bg-lime-400'
-                                    }`}
+                                        }`}
                                 >
                                     <item.icon className="w-4 h-4 inline mr-2" />
                                     {item.name}
@@ -81,18 +80,17 @@ export default function Layout({ children, currentPageName }) {
                             ))}
                         </nav>
                     </div>
-                    
+
                     {/* Mobile Navigation */}
                     <nav className="md:hidden mt-6 flex flex-wrap gap-2">
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
                                 to={item.url}
-                                className={`px-4 py-2 brutalist-border brutalist-text text-xs transition-all duration-200 ${
-                                    location.pathname === item.url
+                                className={`px-4 py-2 brutalist-border brutalist-text text-xs transition-all duration-200 ${location.pathname === item.url
                                         ? 'bg-blue-600 text-white'
                                         : 'bg-white text-black hover:bg-lime-400'
-                                }`}
+                                    }`}
                             >
                                 <item.icon className="w-3 h-3 inline mr-1" />
                                 {item.name}
