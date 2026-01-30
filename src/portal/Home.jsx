@@ -27,7 +27,7 @@ const Home = () => {
             id: 'ideamachina',
             name: 'Idea Machina',
             description: 'Convierte tus ideas en proyectos accionables con IA.',
-            icon: <Hubot className="w-12 h-12 text-purple-400" />,
+            icon: <Bot className="w-12 h-12 text-purple-400" />,
             color: 'hover:border-purple-400/50',
             path: '/ideamachina'
         }
