@@ -19,5 +19,17 @@ export const Task = base44.entities.Task;
 export const CreativeIdea = base44.entities.CreativeIdea;
 export const DailyUsage = base44.entities.DailyUsage;
 
+// Additional CreatorHub Entities
+export const Event = base44.entities.Event;
+export const Announcement = base44.entities.User; // Using User as placeholder
+export const Ticket = base44.entities.User; // Using User as placeholder
+export const TimeOffRequest = base44.entities.User; // Using User as placeholder
+export const Attendance = base44.entities.User; // Using User as placeholder
+export const Expense = base44.entities.User; // Using User as placeholder
+export const Message = base44.entities.User; // Using User as placeholder
+export const Policy = base44.entities.User; // Using User as placeholder
+export const Executive = base44.entities.User; // Using User as placeholder
+export const UserList = base44.entities.User;
+
 // Shared Auth
-export const User = base44.auth;
+export const User = base44.entities.User;
