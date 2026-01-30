@@ -1,53 +1,51 @@
+import React from "react";
 import Layout from "./Layout.jsx";
 
-import Dashboard from "./Dashboard";
+import Home from "./Home";
 
-import Library from "./Library";
+import Calendar from "./Calendar";
 
-import Members from "./Members";
+import TimeOff from "./TimeOff";
 
-import Bookings from "./Bookings";
+import Policies from "./Policies";
 
-import Settings from "./Settings";
+import Executives from "./Executives";
 
-import BookCall from "./BookCall";
+import Announcements from "./Announcements";
 
-import Support from "./Support";
+import Tickets from "./Tickets";
+import Attendance from "./Attendance";
+import Expenses from "./Expenses";
+import AdminDashboard from "./AdminDashboard";
+import Messaging from "./Messaging";
 
-import ResourceAnalytics from "./ResourceAnalytics";
+import Login from "./Login";
 
-import ResourceDetails from "./ResourceDetails";
-
-import Landing from "./Landing";
-
-import ResourceContent from "./ResourceContent";
-
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
+import { User } from "@/api/entities";
 
 const PAGES = {
 
-    Dashboard: Dashboard,
+    Home: Home,
 
-    Library: Library,
+    Calendar: Calendar,
 
-    Members: Members,
+    TimeOff: TimeOff,
 
-    Bookings: Bookings,
+    Policies: Policies,
 
-    Settings: Settings,
+    Executives: Executives,
 
-    BookCall: BookCall,
+    Announcements: Announcements,
 
-    Support: Support,
+    Tickets: Tickets,
+    Attendance: Attendance,
 
-    ResourceAnalytics: ResourceAnalytics,
 
-    ResourceDetails: ResourceDetails,
-
-    Landing: Landing,
-
-    ResourceContent: ResourceContent,
-
+    AdminDashboard: AdminDashboard,
+    Messaging: Messaging,
+    Expenses: Expenses,
+    Login: Login
 }
 
 function _getCurrentPage(url) {
@@ -72,38 +70,74 @@ function PagesContent() {
         <Layout currentPageName={currentPage}>
             <Routes>
 
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
 
 
-                <Route path="/Dashboard" element={<Dashboard />} />
+                <Route path="/Home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
 
-                <Route path="/Library" element={<Library />} />
+                <Route path="/Calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
 
-                <Route path="/Members" element={<Members />} />
+                <Route path="/TimeOff" element={<ProtectedRoute><TimeOff /></ProtectedRoute>} />
 
-                <Route path="/Bookings" element={<Bookings />} />
+                <Route path="/Policies" element={<ProtectedRoute><Policies /></ProtectedRoute>} />
 
-                <Route path="/Settings" element={<Settings />} />
+                <Route path="/Executives" element={<ProtectedRoute><Executives /></ProtectedRoute>} />
 
-                <Route path="/BookCall" element={<BookCall />} />
+                <Route path="/Announcements" element={<ProtectedRoute><Announcements /></ProtectedRoute>} />
 
-                <Route path="/Support" element={<Support />} />
+                <Route path="/Tickets" element={<ProtectedRoute><Tickets /></ProtectedRoute>} />
+                <Route path="/Attendance" element={<ProtectedRoute><Attendance /></ProtectedRoute>} />
 
-                <Route path="/ResourceAnalytics" element={<ResourceAnalytics />} />
+                <Route path="/AdminDashboard" element={<ProtectedRoute adminOnly><AdminDashboard /></ProtectedRoute>} />
 
-                <Route path="/ResourceDetails" element={<ResourceDetails />} />
+                <Route path="/Messaging" element={<ProtectedRoute><Messaging /></ProtectedRoute>} />
 
-                <Route path="/Landing" element={<Landing />} />
+                <Route path="/Expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
 
-                <Route path="/ResourceContent" element={<ResourceContent />} />
+                <Route path="/Login" element={<Login />} />
 
             </Routes>
         </Layout>
     );
 }
 
+function ProtectedRoute({ children, adminOnly = false }) {
+    const [user, setUser] = React.useState(undefined);
+    const location = useLocation();
+
+    React.useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const userData = await User.me();
+                setUser(userData || null);
+            } catch (error) {
+                setUser(null);
+            }
+        };
+        checkAuth();
+    }, []);
+
+    if (user === undefined) {
+        return <div className="min-h-screen flex items-center justify-center bg-slate-50">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900"></div>
+        </div>;
+    }
+
+    if (!user) {
+        return <Navigate to="/Login" state={{ from: location }} replace />;
+    }
+
+    if (adminOnly && user.role !== 'admin') {
+        return <Navigate to="/" replace />;
+    }
+
+    return children;
+}
+
 export default function Pages() {
     return (
-        <PagesContent />
+        <Router>
+            <PagesContent />
+        </Router>
     );
 }
