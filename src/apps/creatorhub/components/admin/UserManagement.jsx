@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { UserPlus, Search, Trash2, Key, ShieldCheck, Mail, Building, UserCircle, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
-import { apiClient } from "@/api/apiClient";
+// import { apiClient } from "@/api/apiClient"; // Removed - will use Google services
 
 export default function UserManagement() {
     const [users, setUsers] = useState([]);

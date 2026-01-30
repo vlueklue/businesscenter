@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Policy } from "@/api/entities";
-import { apiClient } from "@/api/apiClient";
+// import { apiClient } from "@/api/apiClient"; // Removed - will use Google services
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
