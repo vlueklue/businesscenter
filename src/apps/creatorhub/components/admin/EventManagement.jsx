@@ -86,9 +86,10 @@ export default function EventManagement({ onStatsUpdate }) {
 
     setUploading(true);
     try {
-      const result = await apiClient.integrations.Core.UploadFile(file);
-      setCurrentEvent(prev => ({ ...prev, image_url: result.url }));
-      toast.success("Imagen subida correctamente");
+      // TODO: Implement Google Cloud Storage upload
+      const placeholderUrl = URL.createObjectURL(file);
+      setCurrentEvent(prev => ({ ...prev, image_url: placeholderUrl }));
+      toast.success("Imagen cargada (demo mode)");
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("Error al subir imagen");
