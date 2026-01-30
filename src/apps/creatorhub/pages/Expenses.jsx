@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, DollarSign, Upload, Image as ImageIcon, Loader2, AlertCircle, Receipt } from "lucide-react";
 import { toast } from "sonner";
 import { Expense, User } from "@/api/entities";
-import { apiClient } from "@/api/apiClient";
+// import { apiClient } from "@/api/apiClient"; // Removed - will use Google services later
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -82,9 +82,11 @@ const ExpensesPage = () => {
 
         setUploading(true);
         try {
-            const result = await apiClient.integrations.Core.UploadFile(file);
-            setFormData(prev => ({ ...prev, image_url: result.url }));
-            toast.success("Comprobante subido correctamente");
+            // TODO: Implement Google Cloud Storage upload
+            // For now, just create a placeholder URL
+            const placeholderUrl = URL.createObjectURL(file);
+            setFormData(prev => ({ ...prev, image_url: placeholderUrl }));
+            toast.success("Comprobante cargado (demo mode)");
         } catch (error) {
             console.error("Upload error:", error);
             toast.error("Error al subir comprobante");
