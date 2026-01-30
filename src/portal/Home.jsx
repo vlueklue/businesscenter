@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { LayoutGrid, Hubot, Zap } from "lucide-react";
+import { LayoutGrid, Bot, Zap } from "lucide-react";
 
 const Home = () => {
     const navigate = useNavigate();
