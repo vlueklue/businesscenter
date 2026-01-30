@@ -15,46 +15,47 @@ import {
   LogOut,
   AlertTriangle // Added for error display
 } from
-"lucide-react";
+  "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger } from
-"@/components/ui/dropdown-menu";
-import { NotificationProvider } from "./components/notifications/NotificationContext";
-import NotificationTray from "./components/notifications/NotificationTray";
-import ToastContainer from "./components/notifications/ToastContainer";
-import VideoModal from "./components/kanban/VideoModal";
-import DealModal from "./components/deals/DealModal";
-import SettingsModal from "./components/settings/SettingsModal";
+  DropdownMenuTrigger
+} from
+  "@/components/ui/dropdown-menu";
+import { NotificationProvider } from "../components/notifications/NotificationContext";
+import NotificationTray from "../components/notifications/NotificationTray";
+import ToastContainer from "../components/notifications/ToastContainer";
+import VideoModal from "../components/kanban/VideoModal";
+import DealModal from "../components/deals/DealModal";
+import SettingsModal from "../components/settings/SettingsModal";
 // Removed WelcomeModal import
 
 const navigationItems = [
-{
-  title: "Dashboard",
-  subtitle: "Overview & Analytics",
-  url: createPageUrl("Dashboard"),
-  icon: LayoutDashboard
-},
-{
-  title: "Kanban Board",
-  subtitle: "Workflow Management",
-  url: createPageUrl("Kanban"),
-  icon: Trello
-},
-{
-  title: "Content Calendar",
-  subtitle: "Publishing Timeline",
-  url: createPageUrl("Calendar"),
-  icon: Calendar
-},
-{
-  title: "Sponsor Deals",
-  subtitle: "Brand Partnerships",
-  url: createPageUrl("Deals"),
-  icon: DollarSign
-}];
+  {
+    title: "Dashboard",
+    subtitle: "Overview & Analytics",
+    url: createPageUrl("Dashboard"),
+    icon: LayoutDashboard
+  },
+  {
+    title: "Kanban Board",
+    subtitle: "Workflow Management",
+    url: createPageUrl("Kanban"),
+    icon: Trello
+  },
+  {
+    title: "Content Calendar",
+    subtitle: "Publishing Timeline",
+    url: createPageUrl("Calendar"),
+    icon: Calendar
+  },
+  {
+    title: "Sponsor Deals",
+    subtitle: "Brand Partnerships",
+    url: createPageUrl("Deals"),
+    icon: DollarSign
+  }];
 
 
 export default function Layout({ children, currentPageName }) {
@@ -463,10 +464,10 @@ export default function Layout({ children, currentPageName }) {
         }
         /* === SCOPE END === */
       `}</style>
-      
+
       <div className="app-container">
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="mobile-menu-btn"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
@@ -479,7 +480,7 @@ export default function Layout({ children, currentPageName }) {
         </button>
 
         {/* Mobile Overlay */}
-        <div 
+        <div
           className={`mobile-overlay ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMobileMenuOpen(false)}
         />
@@ -497,20 +498,19 @@ export default function Layout({ children, currentPageName }) {
               <h2 className="font-bold text-lg text-white">CreatorFlow</h2>
             </div>
           </div>
-          
+
           {/* Section Label */}
           <div className="cf-sidebar__section-label">Workspace</div>
-          
+
           {/* Navigation */}
           <nav className="cf-sidebar__nav">
             {navigationItems.map((item) =>
-            <Link
-              key={item.title}
-              to={item.url}
-              className={`cf-nav-item ${
-              location.pathname === item.url ? 'is-active' : ''}`
-              }
-              onClick={() => setIsMobileMenuOpen(false)} // Close menu on navigation
+              <Link
+                key={item.title}
+                to={item.url}
+                className={`cf-nav-item ${location.pathname === item.url ? 'is-active' : ''}`
+                }
+                onClick={() => setIsMobileMenuOpen(false)} // Close menu on navigation
               >
 
                 <item.icon className="cf-nav-icon" />
@@ -518,7 +518,7 @@ export default function Layout({ children, currentPageName }) {
               </Link>
             )}
           </nav>
-          
+
           {/* User Profile - Show Guest/Creator when no user */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -594,21 +594,21 @@ export default function Layout({ children, currentPageName }) {
         }
 
         {selectedDeal &&
-        <DealModal
-          deal={selectedDeal}
-          isOpen={showDealModal}
-          onClose={() => {
-            setShowDealModal(false);
-            setSelectedDeal(null);
-          }}
-          onSave={() => {
-            setShowDealModal(false);
-            setSelectedDeal(null);
-          }}
-          onDelete={() => {
-            setShowDealModal(false);
-            setSelectedDeal(null);
-          }} />
+          <DealModal
+            deal={selectedDeal}
+            isOpen={showDealModal}
+            onClose={() => {
+              setShowDealModal(false);
+              setSelectedDeal(null);
+            }}
+            onSave={() => {
+              setShowDealModal(false);
+              setSelectedDeal(null);
+            }}
+            onDelete={() => {
+              setShowDealModal(false);
+              setSelectedDeal(null);
+            }} />
         }
 
         <SettingsModal
