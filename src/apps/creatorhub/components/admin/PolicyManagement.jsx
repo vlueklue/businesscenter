@@ -90,14 +90,15 @@ export default function PolicyManagement({ onStatsUpdate }) {
 
     setUploading(true);
     try {
-      const result = await apiClient.integrations.Core.UploadFile(file);
+      // TODO: Implement Google Cloud Storage upload
+      const placeholderUrl = URL.createObjectURL(file);
       const type = file.type.startsWith('image/') ? 'image' : 'video';
       setCurrentPolicy(prev => ({
         ...prev,
-        media_url: result.url,
+        media_url: placeholderUrl,
         media_type: type
       }));
-      toast.success("Archivo multimedia subido correctamente");
+      toast.success("Archivo cargado (demo mode)");
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("Error al subir archivo");

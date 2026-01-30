@@ -1,18 +1,14 @@
-import { apiClient } from './apiClient';
+// import { apiClient } from './apiClient';
 
+// TODO: Implement Google Cloud integrations
+// All integrations have been disabled for demo purposes
+// These will be replaced with Google Cloud services
 
-export const Core = apiClient.integrations.Core;
-
-export const InvokeLLM = apiClient.integrations.Core.InvokeLLM;
-
-export const SendEmail = apiClient.integrations.Core.SendEmail;
-
-export const UploadFile = apiClient.integrations.Core.UploadFile;
-
-export const GenerateImage = apiClient.integrations.Core.GenerateImage;
-
-export const ExtractDataFromUploadedFile = apiClient.integrations.Core.ExtractDataFromUploadedFile;
-
-export const CreateFileSignedUrl = apiClient.integrations.Core.CreateFileSignedUrl;
-
-export const UploadPrivateFile = apiClient.integrations.Core.UploadPrivateFile;
+export const Core = null;
+export const InvokeLLM = null;
+export const SendEmail = null;
+export const UploadFile = null;
+export const GenerateImage = null;
+export const ExtractDataFromUploadedFile = null;
+export const CreateFileSignedUrl = null;
+export const UploadPrivateFile = null;
