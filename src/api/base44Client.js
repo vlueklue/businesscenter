@@ -40,5 +40,19 @@ export const base44 = {
     Deal: createMockEntity('Deal'),
     Event: createMockEntity('Event'),
     Idea: createMockEntity('Idea'),
+  },
+  integrations: {
+    Core: {
+      UploadFile: async (file) => {
+        console.log("Mock UploadFile called", file);
+        return { file_url: URL.createObjectURL(file.file || file) };
+      },
+      InvokeLLM: async () => ({ response: "Mock LLM Response" }),
+      SendEmail: async () => ({ success: true }),
+      GenerateImage: async () => ({ url: "https://via.placeholder.com/150" }),
+      ExtractDataFromUploadedFile: async () => ({ data: {} }),
+      CreateFileSignedUrl: async () => ({ url: "https://example.com/signed-url" }),
+      UploadPrivateFile: async (file) => ({ url: URL.createObjectURL(file.file || file) }),
+    }
   }
 };
